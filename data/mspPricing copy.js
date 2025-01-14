@@ -1,7 +1,7 @@
 export const packages = [
     {
         name: 'Standard',
-        minCount: 20,
+        minAgents: 20,
         minRequirements: [],
         features: [
             {
@@ -72,29 +72,113 @@ export const packages = [
             }
 
         ],
-        sellingPrice: 25,
-        costPrice: 14.02,
-        cost: [
+        agents: [
             {
-                name: 'Kaseya 365 Endpoint Pro',
-                cost: 8.25,
+                'count': 50,
+                'cost': 4.83
             },
             {
-                name: 'Kaseya User',
-                cost: 5.77,
-            }
-
-        ],
-        vendors: [
+                'count': 100,
+                'cost': 4.13
+            },
             {
-                name: 'Kaseya 365 / user'
+                'count': 250,
+                'cost': 3.44
+            },
+            {
+                'count': 500,
+                'cost': 3.24
+            },
+            {
+                'count': 1000,
+                'cost': 3.03
+            },
+            {
+                'count': 2500,
+                'cost': 2.69
+            },
+            {
+                'count': 5000,
+                'cost': 2.48
+            },
+            {
+                'count': 10000,
+                'cost': 2.27
+            }
+        ],
+        users: [
+            {
+                'count': 50,
+                'cost': 2.76
+            },
+            {
+                'count': 100,
+                'cost': 2.07
+            },
+            {
+                'count': 250,
+                'cost': 1.93
+            },
+            {
+                'count': 500,
+                'cost': 1.79
+            },
+            {
+                'count': 1000,
+                'cost': 1.65
+            },
+            {
+                'count': 2500,
+                'cost': 1.52
+            },
+            {
+                'count': 5000,
+                'cost': 1.45
+            },
+            {
+                'count': 10000,
+                'cost': 1.38
+            }
+        ],
+        learners: [
+            {
+                'count': 50,
+                'cost': 2.48
+            },
+            {
+                'count': 100,
+                'cost': 1.93
+            },
+            {
+                'count': 250,
+                'cost': 1.65
+            },
+            {
+                'count': 500,
+                'cost': 1.52
+            },
+            {
+                'count': 1000,
+                'cost': 1.38
+            },
+            {
+                'count': 2500,
+                'cost': 1.24
+            },
+            {
+                'count': 5000,
+                'cost': 1.17
+            },
+            {
+                'count': 10000,
+                'cost': 1.03
             }
         ]
 
     },
     {
         name: 'Premium',
-        minCount: 30,
+        minAgents: 30,
         minRequirements: [
             { name: 'Minimum contract period - 12 Months.' },
             { name: 'M365 premium license required.' }
@@ -176,36 +260,106 @@ export const packages = [
                 ]
             }
         ],
-        sellingPrice: 42,
-        costPrice: 16.95,
-        cost: [
+        agents: [
             {
-                name: 'Ninja One',
-                cost: 3.61,
+                'count': 50,
+                'cost': 4.82
             },
             {
-                name: 'Huntress MDR',
-                cost: 4.82,
+                'count': 100,
+                'cost': 4.13
             },
             {
-                name: 'Huntress ITDR',
-                cost: 2.76,
+                'count': 250,
+                'cost': 3.44
             },
             {
-                name: 'Avepoint M365 backup',
-                cost: 5.76,
+                'count': 500,
+                'cost': 3.24
+            },
+            {
+                'count': 1000,
+                'cost': 3.03
+            },
+            {
+                'count': 2500,
+                'cost': 2.69
+            },
+            {
+                'count': 5000,
+                'cost': 2.48
+            },
+            {
+                'count': 10000,
+                'cost': 2.27
             }
-
         ],
-        vendors: [
+        users: [
             {
-                name: 'Ninja One'
+                'count': 50,
+                'cost': 2.76
             },
             {
-                name: 'Huntress MDR / ITDR'
+                'count': 100,
+                'cost': 2.07
             },
             {
-                name: 'Avepoint M365'
+                'count': 250,
+                'cost': 1.93
+            },
+            {
+                'count': 500,
+                'cost': 1.79
+            },
+            {
+                'count': 1000,
+                'cost': 1.65
+            },
+            {
+                'count': 2500,
+                'cost': 1.52
+            },
+            {
+                'count': 5000,
+                'cost': 1.45
+            },
+            {
+                'count': 10000,
+                'cost': 1.38
+            }
+        ],
+        learners: [
+            {
+                'count': 50,
+                'cost': 2.48
+            },
+            {
+                'count': 100,
+                'cost': 1.93
+            },
+            {
+                'count': 250,
+                'cost': 1.65
+            },
+            {
+                'count': 500,
+                'cost': 1.52
+            },
+            {
+                'count': 1000,
+                'cost': 1.38
+            },
+            {
+                'count': 2500,
+                'cost': 1.24
+            },
+            {
+                'count': 5000,
+                'cost': 1.17
+            },
+            {
+                'count': 10000,
+                'cost': 1.03
             }
         ]
     }
