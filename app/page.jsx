@@ -16,11 +16,14 @@ export default function Home() {
   const [endpointCost, setEndpointCost] = useState(0)
   const [userCost, setUserCost] = useState(0)
   const [learnerCost, setLearnerCost] = useState(0)
+  const [logged, setLogged] = useState(false)
+  const [error, setError] = useState()
 
 
   const refEndpoints = useRef()
   const refUsers = useRef()
   const refLearners = useRef()
+  const refPasscode = useRef()
 
   const selectPackage = (pkg) => {
     setPkg(pkg.name)
@@ -150,125 +153,145 @@ export default function Home() {
     refLearners.current.value = 0
   }
 
+  const handleLogin = () => {
+    if (refPasscode.current.value === 'x!PzPIZ6mk') {
+      setLogged(true)
+    } else {
+      setError("Incorrect password!")
+    }
+  }
 
   return (
-    <div className="w-full h-screen flex flex-col">
-      {/* <h2 className="bg-indigo-950 text-3xl px-6 text-white font-extrabold pt-2">MSP Calculator</h2> */}
+    <>
 
-      <div className="w-full h-screen flex bg-indigo-950">
-        <div className="bg-indigo-950 flex flex-col justify-evenly items-center">
+      <div className="w-full h-screen flex flex-col">
+        {/* <h2 className="bg-indigo-950 text-3xl px-6 text-white font-extrabold pt-2">MSP Calculator</h2> */}
 
-          {packages.map((row, index) => (
-            <div key={index} className={` ${pkg === row.name ? 'bg-indigo-200' : 'bg-indigo-50'} ${!pkg && 'w-2/3'}  m-6 p-4 shadow-lg rounded`} onClick={() => selectPackage(row)}>
-              <div className="text-2xl font-bold text-center uppercase text-red-700">{row.name}</div>
-              <div className="flex gap-4 justify-between">
-                {row.features.map((item, index) => (
-                  <ul key={index} className="bg-white px-4 py-4 mt-4 rounded-md shadow-md list-disc list-inside"><span className="font-bold inline-block text-nowrap">{item.name}</span>
-                    {item.list.map((row, index2) => (
-                      <li key={index2}>{row.name}</li>
+        <div className="w-full h-screen flex justify-center bg-indigo-950">
+          {!logged ?
+            (<div className="bg-indigo-50 h-fit mt-20 p-10 rounded">
+              <div className="font-bold text-3xl mb-20 text-indigo-950 italic">Login - MSP Calculator</div>
+              <form action={handleLogin}>
+                <div className="text-lg">Passcode <input type="password" className="text-2xl px-4 ml-2 border border-gray-300 shadow-sm rounded" ref={refPasscode} /></div>
+                <div className="text-red-500 mt-4">{error}</div>
+                <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded mt-10 w-full text-xl font-bold">Login</button>
+                <div className="text-center mt-10">&copy; gatewayict - 2025</div>
+              </form>
+            </div>) : (<div className="bg-indigo-950 flex flex-col justify-evenly items-center">
+
+              {packages.map((row, index) => (
+                <div key={index} className={` ${pkg === row.name ? 'bg-indigo-200' : 'bg-indigo-50'} ${!pkg && 'w-2/3'}  m-6 p-4 shadow-lg rounded`} onClick={() => selectPackage(row)}>
+                  <div className="text-2xl font-bold text-center uppercase text-red-700">{row.name}</div>
+                  <div className="flex gap-4 justify-between">
+                    {row.features.map((item, index) => (
+                      <ul key={index} className={`bg-white px-4 py-4 mt-4 rounded-md shadow-md list-disc list-inside ${pkg ? 'w-[300px]' : 'w-[400px]'}`}><span className="font-bold inline-block text-nowrap">{item.name}</span>
+                        {item.list.map((row, index2) => (
+                          <li key={index2}>{row.name}</li>
+                        ))}
+                      </ul>
                     ))}
-                  </ul>
-                ))}
+                  </div>
+                </div>
+              ))}
+
+            </div>)}
+
+
+          {pkg && (<div className="bg-blue-50 p-6 w-full flex flex-col justify-start ">
+            <h1 className="text-3xl mb-10 font-extrabold">Selected Package : <span className="text-blue-500">{pkg} (Min.agents {minAgents})</span></h1>
+            <div className="flex items-end">
+              <table className="w-1/2">
+                <tbody>
+                  <tr className="w-full mb-10">
+                    <td className="w-1/2  font-semibold">Endpoints</td>
+                    <td><input className=" border border-indigo-800 px-2 py-1" type="number" ref={refEndpoints} onChange={handleCalculate} /></td>
+                  </tr>
+                  <tr className="w-full">
+                    <td className="w-1/2  font-semibold">Users</td>
+                    <td><input className=" border border-indigo-800 px-2 py-1" type="number" ref={refUsers} onChange={handleCalculate} /></td>
+                  </tr>
+                  <tr className="w-full">
+                    <td className="w-1/2  font-semibold">Learners</td>
+                    <td><input className=" border border-indigo-800 px-2 py-1" type="number" ref={refLearners} onChange={handleCalculate} /></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="flex gap-4 px-4">
+                {/* <button className="bg-blue-500 text-blue-50 px-4 py-2 rounded uppercase" onClick={handleCalculate}>Calculate</button> */}
+                <button className="bg-emerald-500 text-emerald-50 px-4 py-2 rounded uppercase" onClick={handleReset}>Reset</button>
               </div>
             </div>
-          ))}
 
-        </div>
-
-        {pkg && (<div className="bg-blue-50 p-6 w-full flex flex-col justify-start ">
-          <h1 className="text-3xl mb-10 font-extrabold">Selected Package : <span className="text-blue-500">{pkg} (Min.agents {minAgents})</span></h1>
-          <div className="flex items-end">
-            <table className="w-1/2">
-              <tbody>
-                <tr className="w-full mb-10">
-                  <td className="w-1/2  font-semibold">Endpoints</td>
-                  <td><input className=" border border-indigo-800 px-2 py-1" type="number" ref={refEndpoints} onChange={handleCalculate} /></td>
-                </tr>
-                <tr className="w-full">
-                  <td className="w-1/2  font-semibold">Users</td>
-                  <td><input className=" border border-indigo-800 px-2 py-1" type="number" ref={refUsers} onChange={handleCalculate} /></td>
-                </tr>
-                <tr className="w-full">
-                  <td className="w-1/2  font-semibold">Learners</td>
-                  <td><input className=" border border-indigo-800 px-2 py-1" type="number" ref={refLearners} onChange={handleCalculate} /></td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="flex gap-4 px-4">
-              {/* <button className="bg-blue-500 text-blue-50 px-4 py-2 rounded uppercase" onClick={handleCalculate}>Calculate</button> */}
-              <button className="bg-emerald-500 text-emerald-50 px-4 py-2 rounded uppercase" onClick={handleReset}>Reset</button>
+            <div className="mt-20 bg-white shadow-gray-700 shadow-inner p-6">
+              <table className="w-full">
+                <thead className="bg-blue-800 text-white uppercase">
+                  <tr >
+                    <th className="p-2">#</th>
+                    <th className="p-2">Per Cost</th>
+                    <th className="p-2">Count</th>
+                    <th className="p-2">Per Price</th>
+                    <th className="p-2">Total Cost</th>
+                    <th className="p-2">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody className="text-center">
+                  <tr className="border-b border-indigo-200">
+                    <td>Endpoints</td>
+                    <td>{formatNumber(endpointCost)}</td>
+                    <td>{endpointCount}</td>
+                    <td>{formatNumber(endpointCost * 150 / 100)}</td>
+                    <td>{formatNumber(calculateCost(endpointCost, endpointCount))}</td>
+                    <td>{formatNumber(calculatePrice(endpointCost, endpointCount))}</td>
+                  </tr>
+                  <tr className="border-b border-indigo-200">
+                    <td>Users</td>
+                    <td>{formatNumber(userCost)}</td>
+                    <td>{userCount}</td>
+                    <td>{formatNumber(userCost * 150 / 100)}</td>
+                    <td>{formatNumber(calculateCost(userCost, userCount))}</td>
+                    <td>{formatNumber(calculatePrice(userCost, userCount))}</td>
+                  </tr>
+                  <tr className="border-b border-indigo-200">
+                    <td>Learners</td>
+                    <td>{formatNumber(learnerCost)}</td>
+                    <td>{learnerCount}</td>
+                    <td>{formatNumber(learnerCost * 150 / 100)}</td>
+                    <td>{formatNumber(calculateCost(learnerCost, learnerCount))}</td>
+                    <td>{formatNumber(calculatePrice(learnerCost, learnerCount))}</td>
+                  </tr>
+                  <tr className="border-b border-indigo-200">
+                    <td>NinjaOne</td>
+                    <td>{formatNumber(ninjaOne)}</td>
+                    <td>{endpointCount}</td>
+                    <td>{formatNumber(ninjaOne * 150 / 100)}</td>
+                    <td>{formatNumber(calculateCost(ninjaOne, endpointCount))}</td>
+                    <td>{formatNumber(calculatePrice(ninjaOne, endpointCount))}</td>
+                  </tr>
+                  <tr className="border-b border-indigo-200">
+                    <td>Avepoint Backup</td>
+                    <td>{backupCost}</td>
+                    <td>{endpointCount}</td>
+                    <td>{backupCost * 150 / 100}</td>
+                    <td>{formatNumber(calculateCost(backupCost, endpointCount))}</td>
+                    <td>{formatNumber(calculatePrice(backupCost, endpointCount))}</td>
+                  </tr>
+                  <tr className="font-bold">
+                    <td colSpan={4} className="py-2 uppercase">Total Monthly</td>
+                    <td>{formatNumber(totalCost())}</td>
+                    <td>{formatNumber(totalPrice())}</td>
+                  </tr>
+                  <tr className="bg-gray-600 text-white font-bold">
+                    <td colSpan={4} className="py-2 uppercase">Total Annual</td>
+                    <td>{formatNumber(totalCost() * 12)}</td>
+                    <td>{formatNumber(totalPrice() * 12)}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
 
-          <div className="mt-20 bg-white shadow-gray-700 shadow-inner p-6">
-            <table className="w-full">
-              <thead className="bg-blue-800 text-white uppercase">
-                <tr >
-                  <th className="p-2">#</th>
-                  <th className="p-2">Per Cost</th>
-                  <th className="p-2">Count</th>
-                  <th className="p-2">Per Price</th>
-                  <th className="p-2">Total Cost</th>
-                  <th className="p-2">Total Price</th>
-                </tr>
-              </thead>
-              <tbody className="text-center">
-                <tr className="border-b border-indigo-200">
-                  <td>Endpoints</td>
-                  <td>{formatNumber(endpointCost)}</td>
-                  <td>{endpointCount}</td>
-                  <td>{formatNumber(endpointCost * 150 / 100)}</td>
-                  <td>{formatNumber(calculateCost(endpointCost, endpointCount))}</td>
-                  <td>{formatNumber(calculatePrice(endpointCost, endpointCount))}</td>
-                </tr>
-                <tr className="border-b border-indigo-200">
-                  <td>Users</td>
-                  <td>{formatNumber(userCost)}</td>
-                  <td>{userCount}</td>
-                  <td>{formatNumber(userCost * 150 / 100)}</td>
-                  <td>{formatNumber(calculateCost(userCost, userCount))}</td>
-                  <td>{formatNumber(calculatePrice(userCost, userCount))}</td>
-                </tr>
-                <tr className="border-b border-indigo-200">
-                  <td>Learners</td>
-                  <td>{formatNumber(learnerCost)}</td>
-                  <td>{learnerCount}</td>
-                  <td>{formatNumber(learnerCost * 150 / 100)}</td>
-                  <td>{formatNumber(calculateCost(learnerCost, learnerCount))}</td>
-                  <td>{formatNumber(calculatePrice(learnerCost, learnerCount))}</td>
-                </tr>
-                <tr className="border-b border-indigo-200">
-                  <td>NinjaOne</td>
-                  <td>{formatNumber(ninjaOne)}</td>
-                  <td>{endpointCount}</td>
-                  <td>{formatNumber(ninjaOne * 150 / 100)}</td>
-                  <td>{formatNumber(calculateCost(ninjaOne, endpointCount))}</td>
-                  <td>{formatNumber(calculatePrice(ninjaOne, endpointCount))}</td>
-                </tr>
-                <tr className="border-b border-indigo-200">
-                  <td>Avepoint Backup</td>
-                  <td>{backupCost}</td>
-                  <td>{endpointCount}</td>
-                  <td>{backupCost * 150 / 100}</td>
-                  <td>{formatNumber(calculateCost(backupCost, endpointCount))}</td>
-                  <td>{formatNumber(calculatePrice(backupCost, endpointCount))}</td>
-                </tr>
-                <tr className="font-bold">
-                  <td colSpan={4} className="py-2 uppercase">Total Monthly</td>
-                  <td>{formatNumber(totalCost())}</td>
-                  <td>{formatNumber(totalPrice())}</td>
-                </tr>
-                <tr className="bg-gray-600 text-white font-bold">
-                  <td colSpan={4} className="py-2 uppercase">Total Annual</td>
-                  <td>{formatNumber(totalCost() * 12)}</td>
-                  <td>{formatNumber(totalPrice() * 12)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>)}
+          </div>)}
+        </div>
       </div>
-    </div>
+    </>
   );
 } 
