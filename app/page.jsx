@@ -36,7 +36,7 @@ export default function Home() {
               <div className="mb-4"><center><Image src={logo} alt="logo" width={200} /></center></div>
               <div className="font-bold text-3xl mb-20 text-indigo-950 italic">Login - MSP Calculator</div>
               <form action={handleLogin}>
-                <div className="text-lg flex flex-col gap-2"><span>Passcode</span><input type="password" className="text-2xl px-4 border border-gray-300 shadow-sm rounded" ref={refPasscode} defaultValue={'x!PzPIZ6mk'} /></div>
+                <div className="text-lg flex flex-col gap-2"><span>Passcode</span><input type="password" className="text-2xl px-4 border border-gray-300 shadow-sm rounded" ref={refPasscode} /></div>
                 <div className="text-red-500 mt-4">{error}</div>
                 <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded mt-10 w-full text-xl font-bold">Login</button>
                 <div className="text-center mt-10">&copy; gatewayict - 2025</div>
