@@ -43,8 +43,6 @@ export default function Home() {
   // }, [])
 
   const findCost = (list, listCount) => {
-    console.log(list);
-
     // Sort the list array in ascending order of count to ensure proper range checking
     list.sort((a, b) => a.count - b.count);
 
