@@ -3,6 +3,24 @@ export const packages = [
         name: 'Standard',
         minCount: 20,
         minRequirements: [],
+        inputs: [
+            {
+                name: 'Endpoints',
+                slug: 'endpoints',
+                // minRequired: 20,
+                // sellingPrice: 15,
+                // costPrice: 8.25,
+                // sameCount: false
+            },
+            {
+                name: 'Users',
+                slug: 'users',
+                // minRequired: 0,
+                // sellingPrice: 10,
+                // costPrice: 5.77,
+                // sameCount: false
+            }
+        ],
         features: [
             {
                 name: 'Essential Features',
@@ -77,11 +95,17 @@ export const packages = [
         cost: [
             {
                 name: 'Kaseya 365 Endpoint Pro',
+                slug: 'endpoints',
                 cost: 8.25,
+                price: 15,
+                requiredMin: 20
             },
             {
                 name: 'Kaseya User',
+                slug: 'users',
                 cost: 5.77,
+                price: 10,
+                requiredMin: 0
             }
 
         ],
@@ -94,10 +118,20 @@ export const packages = [
     },
     {
         name: 'Premium',
-        minCount: 30,
+        minCount: 20,
         minRequirements: [
             { name: 'Minimum contract period - 12 Months.' },
             { name: 'M365 premium license required.' }
+        ],
+        inputs: [
+            {
+                name: 'Current Microsoft Premium Users',
+                slug: 'endpoints',
+                // minRequired: 20,
+                // sellingPrice: 42,
+                // costPrice: 16.95,
+                // sameCount: true
+            },
         ],
         features: [
             {
@@ -182,18 +216,26 @@ export const packages = [
             {
                 name: 'Ninja One',
                 cost: 3.61,
+                price: 9,
+                requiredMin: 20
             },
             {
                 name: 'Huntress MDR',
                 cost: 4.82,
+                price: 12,
+                requiredMin: 20
             },
             {
                 name: 'Huntress ITDR',
                 cost: 2.76,
+                price: 7,
+                requiredMin: 20
             },
             {
                 name: 'Avepoint M365 backup',
                 cost: 5.76,
+                price: 14,
+                requiredMin: 20
             }
 
         ],
