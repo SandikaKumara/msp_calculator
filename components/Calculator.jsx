@@ -137,7 +137,6 @@ function Calculator(props) {
         <div
             className={`mt-6 bg-blue-50 p-6 w-full flex flex-col justify-start items-start rounded shadow-md origin-top transform ${loaded ? 'scale-y-100' : 'scale-y-0'} transition-transform duration-700 ease-in-out`}
         >
-            <h2>Loading {loaded}</h2>
             <div className='flex w-full'>
                 <div className='w-1/3'>
                     <ul className="mb-4 list-disc list-inside text-red-600 font-bold">
