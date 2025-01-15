@@ -7,18 +7,10 @@ export const packages = [
             {
                 name: 'Endpoints',
                 slug: 'endpoints',
-                // minRequired: 20,
-                // sellingPrice: 15,
-                // costPrice: 8.25,
-                // sameCount: false
             },
             {
                 name: 'Users',
                 slug: 'users',
-                // minRequired: 0,
-                // sellingPrice: 10,
-                // costPrice: 5.77,
-                // sameCount: false
             }
         ],
         features: [
