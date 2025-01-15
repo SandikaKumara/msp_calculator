@@ -34,7 +34,7 @@ function Calculator(props) {
 
         const annualRow = {
             id: 'annually',
-            name: "Annually Total",
+            name: "Annual Total",
             totalCost: 0,
             totalPrice: 0,
             margin: 0,
