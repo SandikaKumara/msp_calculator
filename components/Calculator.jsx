@@ -108,9 +108,9 @@ function Calculator(props) {
 
     }, [])
 
-    useEffect(() => {
-        console.log("Loaded: ", loaded);
-    }, [loaded])
+    // useEffect(() => {
+    //     console.log("Loaded: ", loaded);
+    // }, [loaded])
 
 
     const formatNumber = (value) => {

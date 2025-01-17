@@ -90,7 +90,7 @@ export const packages = [
                 slug: 'endpoints',
                 cost: 8.25,
                 price: 15,
-                requiredMin: 20
+                requiredMin: 0
             },
             {
                 name: 'Kaseya User',
@@ -208,26 +208,32 @@ export const packages = [
             {
                 name: 'Ninja One',
                 cost: 3.61,
-                price: 9,
-                requiredMin: 20
+                price: 6,
+                requiredMin: 0
             },
             {
                 name: 'Huntress MDR',
                 cost: 4.82,
-                price: 12,
-                requiredMin: 20
+                price: 8,
+                requiredMin: 0
             },
             {
                 name: 'Huntress ITDR',
                 cost: 2.76,
-                price: 7,
-                requiredMin: 20
+                price: 5,
+                requiredMin: 0
+            },
+            {
+                name: 'Huntress SAT (Learner)',
+                cost: 2.48,
+                price: 4,
+                requiredMin: 0
             },
             {
                 name: 'Avepoint M365 backup',
                 cost: 5.76,
-                price: 14,
-                requiredMin: 20
+                price: 9,
+                requiredMin: 0
             }
 
         ],
