@@ -15,8 +15,8 @@ function Calculator(props) {
         const rows = props.pkg.cost.map(row => ({
             id: row.slug,
             name: row.name,
-            cost: row.cost,
-            price: row.price,
+            cost: formatNumber(row.cost),
+            price: formatNumber(row.price),
             count: 0,
             totalCost: 0,
             totalPrice: 0,
