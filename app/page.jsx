@@ -20,7 +20,7 @@ export default function Home() {
 
   const handleLogin = () => {
     setLoading(true)
-    if (refPasscode.current.value === 'wecanwin@2025') {
+    if (refPasscode.current.value === ':=UQ.DeFM#3qWZE') {
       setLogged(true)
     } else {
       setError("Incorrect password!")
